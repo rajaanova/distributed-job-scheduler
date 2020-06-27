@@ -6,7 +6,7 @@ install:
 
 .Phony : run
 run: delete
-	 docker network create xyz
+	 -docker network create xyz
 	 docker pull consul
 	 docker run -d --name=dev-consul --network=xyz  -p8500:8500 --rm consul
 	 docker build -t ${project} .
@@ -14,6 +14,5 @@ run: delete
 
 .Phony : delete
 delete:
-	-docker network rm xyz
 	-docker stop dev-consul
 	-docker stop jobscheduler
