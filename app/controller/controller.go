@@ -31,7 +31,7 @@ func (a *JobScheduler) run() {
 		OneTimeJob()
 		err := a.unlock()
 		if err != nil {
-			log.Printf("error updating the key to finished state", err)
+			log.Println("error updating the key to finished state", err)
 		}
 	} else {
 		hostName, _ := os.Hostname()

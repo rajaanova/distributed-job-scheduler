@@ -64,8 +64,8 @@ func (a *AppLocker) Lock() error {
 
 		isAccepted, _, err := kv.CAS(&api.KVPair{Key: "jobStatus", Value: valToSet, ModifyIndex: kvData.ModifyIndex}, nil)
 		if !isAccepted {
-			fmt.Errorf("some error setting the values %v ", err)
-			return err
+			return fmt.Errorf("some error setting the values %v ", err)
+
 		}
 		log.Println("lock on job succeeded")
 		return nil

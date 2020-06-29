@@ -1,4 +1,5 @@
 project = jobscheduler
+coverageFile = cover.out
 .Phony : install
 install:
 	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ${project} cmd/main.go
@@ -16,3 +17,15 @@ run: delete
 delete:
 	-docker stop dev-consul
 	-docker stop jobscheduler
+
+.Phony : build
+build: test
+	 @CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ${project} cmd/main.go
+
+.Phony : test
+test:
+	@./testcoverage.sh
+
+
+
+
